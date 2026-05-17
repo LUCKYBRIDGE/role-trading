@@ -314,51 +314,115 @@ scenarios.forEach((scenario) => {
 
 const studyCards = [
   {
+    deck: "core",
     label: "핵심 개념",
     front: "역할은 태도가 아니라 위치입니다.",
     back:
       "친절하게 말하느냐 단호하게 말하느냐보다, 교사가 학생과 맞서는 위치에 서는지 공동체를 대표해 기준을 말하는 위치에 서는지가 중요합니다.",
   },
   {
+    deck: "core",
     label: "역할의 형성",
     front: "역할은 익숙하고 안전했던 행동 방식입니다.",
     back:
       "지금까지의 경험 속에서 나를 지켜 주었거나 가장 익숙했던 반응이 역할로 굳어집니다. 그래서 마음먹는다고 바로 바뀌지 않고 반복 연습이 필요합니다.",
   },
   {
+    deck: "core",
     label: "생활교육의 방향",
     front: "통제할수록 1대1 대치가 되기 쉽습니다.",
     back:
       "교사의 목표는 학생을 이기는 것이 아니라, 학생이 공동체 안에서 자기 역할을 다시 설정할 수 있도록 기준과 흐름을 세우는 것입니다.",
   },
   {
+    deck: "observer",
     label: "관찰자",
     front: "먼저 판단하지 않고 장면을 봅니다.",
     back:
       "누가 잘못했는지보다 지금 무슨 일이 벌어지고 있는지, 웃음과 소리와 시선이 어떻게 움직이는지 말합니다.",
   },
   {
+    deck: "observer",
+    label: "관찰자",
+    front: "관찰자는 방관자가 아닙니다.",
+    back:
+      "가만히 넘기는 사람이 아니라 즉각 지목을 멈추고 교실의 흐름을 읽어 모두가 볼 수 있게 말하는 사람입니다.",
+  },
+  {
+    deck: "observer",
+    label: "관찰자",
+    front: "관찰자의 말에는 감정 단어가 적습니다.",
+    back:
+      "“왜 그러니?”보다 “지금 웃음이 커지고 있습니다”, “설명 중 대화가 이어지고 있습니다”처럼 현재형 사실을 말합니다.",
+  },
+  {
+    deck: "summarizer",
     label: "사건 정리자",
     front: "끊어진 흐름을 언어로 고정합니다.",
     back:
       "장난인지 의도적인지 따지기 전에 수업, 발표, 활동, 안전한 분위기 중 무엇이 끊겼는지 정리합니다.",
   },
   {
+    deck: "summarizer",
+    label: "사건 정리자",
+    front: "사건 정리자는 잘잘못 판정자가 아닙니다.",
+    back:
+      "누가 나쁘냐보다 이 행동으로 공동체 활동의 어느 부분이 멈췄는지를 짧고 분명하게 말합니다.",
+  },
+  {
+    deck: "summarizer",
+    label: "사건 정리자",
+    front: "정리 문장은 다음 역할로 가는 다리입니다.",
+    back:
+      "무슨 일이 끊겼는지 정리해야 경계 설정이 처벌처럼 들리지 않고 공동체 기준으로 들립니다.",
+  },
+  {
+    deck: "boundary",
     label: "경계 설정자",
     front: "응보적으로 혼내지 않고 기준을 세웁니다.",
     back:
       "공동체를 대표해 여기까지 가능하고 여기부터는 멈춰야 한다고 말합니다. 경계는 처벌이 아니라 다시 공동체로 들어오는 문입니다.",
   },
   {
+    deck: "boundary",
+    label: "경계 설정자",
+    front: "경계는 교사의 기분이 아니라 공동체 기준입니다.",
+    back:
+      "“내가 화났다”가 아니라 “우리 교실에서는 이 방식은 허용하지 않는다”를 말할 때 1대1 대치가 줄어듭니다.",
+  },
+  {
+    deck: "boundary",
+    label: "경계 설정자",
+    front: "경계 설정은 내치는 말이 아닙니다.",
+    back:
+      "멈출 선을 세우면서도 학생이 다시 수업과 공동체 안으로 들어올 수 있는 방식을 함께 열어 둡니다.",
+  },
+  {
+    deck: "system",
     label: "시스템 연결자",
     front: "반복되는 문제는 구조로 봅니다.",
     back:
       "한 학생만 지목하지 않고 수업 리듬, 질문 방식, 학급 문화, 학교 절차와 연결해 같은 문제가 덜 반복되게 만듭니다.",
   },
+  {
+    deck: "system",
+    label: "시스템 연결자",
+    front: "시스템은 거창한 제도가 아닙니다.",
+    back:
+      "질문을 언제 받을지, 모둠 역할을 어떻게 나눌지, 반복 문제를 누구와 공유할지 같은 가까운 흐름이 모두 시스템입니다.",
+  },
+  {
+    deck: "system",
+    label: "시스템 연결자",
+    front: "시스템 연결자는 책임을 흐리지 않습니다.",
+    back:
+      "학생 책임은 학생에게, 교사 책임은 교사에게, 학급 문화의 책임은 공동체에게 돌려놓아 더 정확하게 개입합니다.",
+  },
 ];
 
 const state = {
   view: "study",
+  studyDeck: "core",
   studyIndex: 0,
   studyFlipped: false,
   quizIndex: 0,
@@ -366,6 +430,7 @@ const state = {
   selectedResponse: null,
   sentenceRole: "observer",
   sentenceIndex: 0,
+  sentenceFlipped: false,
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -388,17 +453,55 @@ function switchView(view) {
   });
 }
 
+function studyDecks() {
+  return [
+    { id: "core", name: "전체 개념" },
+    { id: "observer", name: "관찰자" },
+    { id: "summarizer", name: "사건 정리자" },
+    { id: "boundary", name: "경계 설정자" },
+    { id: "system", name: "시스템 연결자" },
+  ];
+}
+
+function currentStudyCards() {
+  return studyCards.filter((card) => card.deck === state.studyDeck);
+}
+
+function renderStudyDeckFilter() {
+  $("#study-deck-filter").innerHTML = studyDecks()
+    .map(
+      (deck) => `
+        <button class="role-chip ${deck.id === state.studyDeck ? "is-active" : ""}" type="button" data-deck="${deck.id}">
+          ${deck.name}
+        </button>
+      `,
+    )
+    .join("");
+
+  $("#study-deck-filter").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.studyDeck = button.dataset.deck;
+      state.studyIndex = 0;
+      state.studyFlipped = false;
+      renderStudyDeckFilter();
+      renderStudyCard();
+    });
+  });
+}
+
 function renderStudyCard() {
-  const card = studyCards[state.studyIndex];
+  const cards = currentStudyCards();
+  const card = cards[state.studyIndex];
   $("#study-card").innerHTML = `
-    <span class="label">${card.label} · ${state.studyIndex + 1}/${studyCards.length}</span>
+    <span class="label">${card.label} · ${state.studyIndex + 1}/${cards.length}</span>
     <h3>${state.studyFlipped ? card.back : card.front}</h3>
     <p>${state.studyFlipped ? "다시 누르면 앞면으로 돌아갑니다." : "카드를 뒤집어 설명을 확인하세요."}</p>
   `;
 }
 
 function moveStudy(delta) {
-  state.studyIndex = (state.studyIndex + delta + studyCards.length) % studyCards.length;
+  const cards = currentStudyCards();
+  state.studyIndex = (state.studyIndex + delta + cards.length) % cards.length;
   state.studyFlipped = false;
   renderStudyCard();
 }
@@ -415,7 +518,15 @@ function renderQuiz() {
   const scenario = currentScenario();
   state.selectedRole = null;
   state.selectedResponse = null;
-  $("#quiz-meta").innerHTML = `<span>${scenario.category}</span><span>긴급도 ${scenario.urgency}</span>`;
+  $("#quiz-meta").innerHTML = `
+    <span>${state.quizIndex + 1}/${scenarios.length}</span>
+    <span>${scenario.category}</span>
+    <span>긴급도 ${scenario.urgency}</span>
+  `;
+  if (!$(".progress-line")) {
+    $(".quiz-card").insertAdjacentHTML("afterbegin", '<div class="progress-line" aria-hidden="true"><span></span></div>');
+  }
+  $(".progress-line span").style.width = `${((state.quizIndex + 1) / scenarios.length) * 100}%`;
   $("#quiz-scenario-title").textContent = scenario.title;
   $("#quiz-scenario-text").textContent = scenario.situation;
   $("#quiz-tags").innerHTML = scenario.tags.map((tag) => `<span>${tag}</span>`).join("");
@@ -603,6 +714,7 @@ function renderSentenceFilters() {
     button.addEventListener("click", () => {
       state.sentenceRole = button.dataset.role;
       state.sentenceIndex = 0;
+      state.sentenceFlipped = false;
       renderSentenceFilters();
       renderSentenceCard();
     });
@@ -612,17 +724,67 @@ function renderSentenceFilters() {
 function renderSentenceCard() {
   const pool = sentencePool();
   const sentence = pool[state.sentenceIndex % pool.length];
-  $("#practice-sentence-card").innerHTML = `
-    <span class="label">${roleName(sentence.role)}${sentence.level ? ` · ${sentence.level}` : ""} · ${state.sentenceIndex + 1}/${pool.length}</span>
-    <h3>${sentence.text}</h3>
-    <p>소리 내어 읽고, 내 교실 말투로 한 번 바꿔 말해 보세요.</p>
-  `;
+  const insight = sentenceInsight(sentence);
+  $("#practice-sentence-card").innerHTML = state.sentenceFlipped
+    ? `
+      <span class="label">${roleName(sentence.role)} · 포인트</span>
+      <h3>${insight.title}</h3>
+      <ul>
+        <li><strong>목적</strong> ${insight.purpose}</li>
+        <li><strong>연습</strong> ${insight.practice}</li>
+        <li><strong>피하기</strong> ${insight.avoid}</li>
+      </ul>
+    `
+    : `
+      <span class="label">${roleName(sentence.role)}${sentence.level ? ` · ${sentence.level}` : ""} · ${state.sentenceIndex + 1}/${pool.length}</span>
+      <h3>${sentence.text}</h3>
+      <p>소리 내어 읽고, 포인트 보기를 눌러 이 문장의 쓰임을 확인하세요.</p>
+    `;
+  $("#flip-sentence").textContent = state.sentenceFlipped ? "문장 보기" : "포인트 보기";
 }
 
 function moveSentence(delta) {
   const pool = sentencePool();
   state.sentenceIndex = (state.sentenceIndex + delta + pool.length) % pool.length;
+  state.sentenceFlipped = false;
   renderSentenceCard();
+}
+
+function sentenceInsight(sentence) {
+  const role = getRole(sentence.role);
+  const common = {
+    title: role.short,
+    purpose: role.description,
+    practice: "문장을 그대로 읽은 뒤, 내 반 교실에서 자연스러운 말투로 다시 말해 봅니다.",
+    avoid: "학생을 인격적으로 규정하거나, 교사와 학생의 1대1 힘겨루기로 만드는 표현을 피합니다.",
+  };
+
+  if (sentence.role === "observer") {
+    return {
+      ...common,
+      practice: "누가 잘못했는지 말하기 전에 보이는 사실, 소리, 시선, 흐름만 말해 봅니다.",
+      avoid: "“너 왜 그래?”처럼 의도나 성격을 추궁하는 말을 피합니다.",
+    };
+  }
+  if (sentence.role === "summarizer") {
+    return {
+      ...common,
+      practice: "이 행동 때문에 무엇이 끊겼는지 한 문장으로 정리해 봅니다.",
+      avoid: "잘잘못 판정부터 하거나 장황하게 설교하는 반응을 피합니다.",
+    };
+  }
+  if (sentence.role === "boundary") {
+    return {
+      ...common,
+      practice: "공동체를 대표해 허용되는 것과 멈춰야 할 것을 차분히 말해 봅니다.",
+      avoid: "응보적으로 혼내거나, 학생을 제압하려는 말투를 피합니다.",
+    };
+  }
+  return {
+    ...common,
+    practice: "같은 문제가 반복되지 않도록 수업 방식, 학급 규칙, 학교 절차 중 어디로 연결할지 말해 봅니다.",
+    avoid: "한 학생의 태도 문제로만 끝내거나 담임 혼자 떠안게 만드는 흐름을 피합니다.",
+  };
 }
 
 function bindEvents() {
@@ -645,11 +807,20 @@ function bindEvents() {
   $("#next-quiz").addEventListener("click", () => moveQuiz(1));
 
   $("#prev-sentence").addEventListener("click", () => moveSentence(-1));
+  $("#practice-sentence-card").addEventListener("click", () => {
+    state.sentenceFlipped = !state.sentenceFlipped;
+    renderSentenceCard();
+  });
+  $("#flip-sentence").addEventListener("click", () => {
+    state.sentenceFlipped = !state.sentenceFlipped;
+    renderSentenceCard();
+  });
   $("#next-sentence").addEventListener("click", () => moveSentence(1));
 }
 
 function init() {
   bindEvents();
+  renderStudyDeckFilter();
   renderStudyCard();
   renderQuiz();
   renderSentenceFilters();
