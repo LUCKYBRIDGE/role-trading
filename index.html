@@ -36,6 +36,7 @@
             <h2 id="study-title">역할 트레이딩을 카드로 이해하기</h2>
           </div>
 
+          <div class="role-filter" id="study-deck-filter" aria-label="이론 카드 묶음"></div>
           <article class="flashcard" id="study-card" tabindex="0" role="button" aria-live="polite"></article>
           <div class="card-actions">
             <button class="secondary-button" type="button" id="prev-study">이전</button>
@@ -48,6 +49,7 @@
           <div class="section-title">
             <p class="eyebrow">Practice</p>
             <h2 id="quiz-title">교실 상황 선택형 퀴즈</h2>
+            <p class="section-help">상황은 무작위 순서로 제시됩니다. 역할을 고른 뒤 나의 언행을 선택해 보세요.</p>
           </div>
 
           <article class="quiz-card">
@@ -64,7 +66,7 @@
           </section>
 
           <section class="choice-panel is-muted is-locked" id="next-step-panel">
-            <h3>이제 교사의 언행을 선택해 보세요</h3>
+            <h3>이제 나의 언행을 선택해 보세요</h3>
             <div class="response-grid" id="response-choices"></div>
             <div class="feedback" id="response-feedback"></div>
             <div class="mini-card" id="action-card"></div>
@@ -87,7 +89,8 @@
           <article class="flashcard sentence-flashcard" id="practice-sentence-card" tabindex="0" role="button"></article>
           <div class="card-actions">
             <button class="secondary-button" type="button" id="prev-sentence">이전</button>
-            <button class="primary-button" type="button" id="next-sentence">다음 문장</button>
+            <button class="primary-button" type="button" id="flip-sentence">포인트 보기</button>
+            <button class="secondary-button" type="button" id="next-sentence">다음 문장</button>
           </div>
         </section>
       </main>
