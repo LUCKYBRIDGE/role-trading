@@ -147,6 +147,66 @@ h3 {
   min-height: 360px;
   padding: clamp(24px, 5vw, 48px);
   cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.flashcard.is-front {
+  border-color: #c9d8d4;
+  background: linear-gradient(180deg, #fffefa 0%, #f6fbf9 100%);
+}
+
+.flashcard.is-back {
+  border-color: #d4c08f;
+  background: linear-gradient(180deg, #fff9e8 0%, #fffefa 100%);
+  box-shadow: 0 18px 36px rgba(95, 72, 31, 0.14);
+}
+
+.card-topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.face-badge,
+.card-progress {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.face-badge.is-front {
+  background: var(--accent);
+  color: #fff;
+}
+
+.face-badge.is-back {
+  background: #8a611c;
+  color: #fff;
+}
+
+.card-progress {
+  margin-left: auto;
+  background: #f1eadc;
+  color: var(--muted);
+}
+
+.flashcard .face-kicker {
+  margin: 24px 0 0;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.flashcard.is-back .face-kicker {
+  color: #8a611c;
 }
 
 .flashcard .label,

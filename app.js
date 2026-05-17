@@ -390,11 +390,22 @@ function switchView(view) {
 
 function renderStudyCard() {
   const card = studyCards[state.studyIndex];
+  const isBack = state.studyFlipped;
+  const faceLabel = isBack ? "뒷면" : "앞면";
+  const faceHint = isBack ? "설명" : "핵심 문장";
   $("#study-card").innerHTML = `
-    <span class="label">${card.label} · ${state.studyIndex + 1}/${studyCards.length}</span>
-    <h3>${state.studyFlipped ? card.back : card.front}</h3>
-    <p>${state.studyFlipped ? "다시 누르면 앞면으로 돌아갑니다." : "카드를 뒤집어 설명을 확인하세요."}</p>
+    <div class="card-topline">
+      <span class="label">${card.label}</span>
+      <span class="face-badge ${isBack ? "is-back" : "is-front"}">${faceLabel}</span>
+      <span class="card-progress">${state.studyIndex + 1}/${studyCards.length}</span>
+    </div>
+    <p class="face-kicker">${faceHint}</p>
+    <h3>${isBack ? card.back : card.front}</h3>
+    <p>${isBack ? "현재 뒷면입니다. 다시 누르면 앞면으로 돌아갑니다." : "현재 앞면입니다. 카드를 뒤집어 설명을 확인하세요."}</p>
   `;
+  $("#study-card").classList.toggle("is-back", isBack);
+  $("#study-card").classList.toggle("is-front", !isBack);
+  $("#flip-study").textContent = isBack ? "앞면 보기" : "뒷면 보기";
 }
 
 function moveStudy(delta) {
