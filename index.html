@@ -3,305 +3,100 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>역할 선택 생활교육 트레이너</title>
+    <title>역할 선택 생활교육 카드 트레이너</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="side-panel" aria-label="역할 선택 생활교육 안내">
-        <div class="brand-block">
+    <div class="app">
+      <header class="topbar">
+        <div>
           <p class="eyebrow">Role Choice Classroom Practice</p>
-          <h1>역할 선택 생활교육 트레이너</h1>
-          <p class="lead">
-            역할 선택 생활교육의 이론을 익히고, 교실 장면에 맞는 역할과 기준 문장을 연습합니다.
-          </p>
+          <h1>역할 선택 생활교육 카드 트레이너</h1>
         </div>
+        <a
+          class="source-link"
+          href="https://www.youtube.com/@Social_Profiler/featured"
+          target="_blank"
+          rel="noreferrer"
+        >
+          학생생활교육 마스터클래스
+        </a>
+      </header>
 
-        <nav class="mode-nav" aria-label="연습 모드">
-          <button class="nav-button is-active" type="button" data-view="theory">
-            이론 공부
-          </button>
-          <button class="nav-button" type="button" data-view="scenario">
-            실전 연습
-          </button>
-          <button class="nav-button" type="button" data-view="flow">
-            4단계 흐름
-          </button>
-          <button class="nav-button" type="button" data-view="library">
-            문장 자료실
-          </button>
-        </nav>
+      <nav class="tabs" aria-label="학습 모드">
+        <button class="tab is-active" type="button" data-view="study">이론 카드</button>
+        <button class="tab" type="button" data-view="quiz">상황 퀴즈</button>
+        <button class="tab" type="button" data-view="cards">문장 카드</button>
+      </nav>
 
-        <section class="role-map" aria-label="역할 흐름">
-          <h2>역할 이동 순서</h2>
-          <ol>
-            <li><span>1</span> 관찰자</li>
-            <li><span>2</span> 사건 정리자</li>
-            <li><span>3</span> 경계 설정자</li>
-            <li><span>4</span> 시스템 연결자</li>
-          </ol>
+      <main>
+        <section class="view is-visible" id="study-view" aria-labelledby="study-title">
+          <div class="section-title">
+            <p class="eyebrow">Study</p>
+            <h2 id="study-title">역할 트레이딩을 카드로 이해하기</h2>
+          </div>
+
+          <article class="flashcard" id="study-card" tabindex="0" role="button" aria-live="polite"></article>
+          <div class="card-actions">
+            <button class="secondary-button" type="button" id="prev-study">이전</button>
+            <button class="primary-button" type="button" id="flip-study">뒤집기</button>
+            <button class="secondary-button" type="button" id="next-study">다음</button>
+          </div>
         </section>
 
-        <section class="credit-block" aria-label="자료 출처">
-          <h2>자료 기반</h2>
-          <p>
-            이 웹은 리피스평화교육연구소 대표이자 유튜브
-            <strong>학생생활교육 마스터클래스</strong> 운영자인
-            <strong>정진 소장님</strong>의 교육과 자료를 바탕으로 제작되었습니다.
-          </p>
-          <a
-            class="credit-link"
-            href="https://www.youtube.com/@Social_Profiler/featured"
-            target="_blank"
-            rel="noreferrer"
-          >
-            유튜브 채널 보기
-          </a>
-        </section>
-      </aside>
-
-      <main class="workspace">
-        <section class="view is-visible" id="theory-view" aria-labelledby="theory-title">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Study</p>
-              <h2 id="theory-title">역할 트레이딩 이해하기</h2>
-            </div>
-            <button class="ghost-button" type="button" data-view-jump="scenario">실전으로 이동</button>
+        <section class="view" id="quiz-view" aria-labelledby="quiz-title">
+          <div class="section-title">
+            <p class="eyebrow">Practice</p>
+            <h2 id="quiz-title">교실 상황 선택형 퀴즈</h2>
           </div>
 
-          <section class="theory-hero panel">
-            <div>
-              <p class="eyebrow">Core Idea</p>
-              <h3>역할은 성격이 아니라 교사가 서는 자리입니다.</h3>
-              <p>
-                교실에서는 생각할 시간이 길지 않습니다. 그래서 교사는 연수에서 배운 문장보다
-                몸에 익은 역할로 먼저 반응합니다. 역할 선택 생활교육은 자동 반응을 알아차리고,
-                지금 장면에 필요한 자리로 이동하는 연습입니다.
-              </p>
-              <p>
-                역할은 친절하거나 단호한 태도의 문제가 아니라, 교사가 어디에 서서 누구를 대표해 말하는가의
-                문제입니다. 감정소모 없이 개입하려면 학생을 응보적으로 혼내는 사람이 아니라 공동체를
-                대표하여 기준을 말하는 위치에 서야 합니다.
-              </p>
-              <p>
-                역할은 지금까지의 경험 속에서 가장 안전하거나 익숙했던 나의 행동 방식입니다.
-                그래서 역할은 마음먹는다고 바로 바뀌지 않고, 반복해서 알아차리고 다른 선택을 해 보는
-                훈련이 필요합니다.
-              </p>
-              <p>
-                아이를 통제하려고 할수록 교사와 학생의 1대1 대치가 만들어지기 쉽습니다. 역할 선택은
-                학생을 이기기 위한 기술이 아니라, 아이가 공동체의 일원으로 다시 들어와 자기 역할을
-                재설정할 수 있도록 교실의 기준과 흐름을 세우는 일입니다.
-              </p>
-            </div>
-            <div class="theory-note">
-              <strong>핵심 질문</strong>
-              <span>나는 지금 아이와 맞서고 있는가, 아니면 공동체의 기준을 제시하고 있는가?</span>
-            </div>
+          <article class="quiz-card">
+            <div class="quiz-meta" id="quiz-meta"></div>
+            <h3 id="quiz-scenario-title"></h3>
+            <p id="quiz-scenario-text"></p>
+            <div class="tag-row" id="quiz-tags"></div>
+          </article>
+
+          <section class="choice-panel">
+            <h3>이 장면에서 먼저 설 역할은?</h3>
+            <div class="choice-grid" id="role-choices"></div>
+            <div class="feedback" id="quiz-feedback"></div>
           </section>
 
-          <div class="theory-grid">
-            <section class="panel theory-card">
-              <span class="theory-number">1</span>
-              <h3>익숙한 안전 전략을 알아차리기</h3>
-              <p>
-                설명하기, 설득하기, 감정으로 맞서기, 참다가 터지기는 과거 경험 속에서 나를 지켜 주었거나
-                가장 익숙했던 방식일 수 있습니다. 먼저 “내가 지금 어느 자리에 서 있는가?”를 봅니다.
-              </p>
-            </section>
-            <section class="panel theory-card">
-              <span class="theory-number">2</span>
-              <h3>장면을 개인 문제가 아닌 흐름으로 보기</h3>
-              <p>
-                문제 행동을 한 학생의 성격으로만 보면 지목과 대결로 흐르기 쉽습니다. 수업 흐름,
-                웃음의 확산, 말의 방식, 학급 문화까지 함께 봅니다.
-              </p>
-            </section>
-            <section class="panel theory-card">
-              <span class="theory-number">3</span>
-              <h3>교사는 기준을 제시하는 사람</h3>
-              <p>
-                기준은 혼내는 말이 아니라 교실을 유지하는 약속입니다. 교사는 “너를 제압하겠다”가 아니라
-                공동체를 대표해 “이 공동체에서는 여기까지 가능하고 여기부터는 멈춘다”를 분명히 말합니다.
-              </p>
-            </section>
-            <section class="panel theory-card">
-              <span class="theory-number">4</span>
-              <h3>역할을 순서대로 이동하기</h3>
-              <p>
-                관찰자는 장면을 보고, 사건 정리자는 끊어진 흐름을 말하고, 경계 설정자는 기준을 세우며,
-                시스템 연결자는 반복 구조를 바꿉니다.
-              </p>
-            </section>
+          <section class="choice-panel is-muted is-locked" id="next-step-panel">
+            <h3>이제 교사의 언행을 선택해 보세요</h3>
+            <div class="response-grid" id="response-choices"></div>
+            <div class="feedback" id="response-feedback"></div>
+            <div class="mini-card" id="action-card"></div>
+            <div class="mini-card" id="sentence-card"></div>
+          </section>
+
+          <div class="card-actions">
+            <button class="secondary-button" type="button" id="prev-quiz">이전 상황</button>
+            <button class="primary-button" type="button" id="next-quiz">다음 상황</button>
           </div>
-
-          <section class="panel role-study">
-            <div class="panel-header">
-              <h3>네 가지 역할 한눈에 보기</h3>
-              <span class="count-label">이론에서 실전으로 이어지는 기준</span>
-            </div>
-            <div class="role-study-grid">
-              <article>
-                <strong>관찰자</strong>
-                <p>즉시 지목하지 않고 지금 벌어지는 사실과 흐름을 말합니다.</p>
-                <span>예: “지금 웃음이 커지면서 수업 집중이 흐트러지고 있어요.”</span>
-              </article>
-              <article>
-                <strong>사건 정리자</strong>
-                <p>행동이 수업, 발표, 관계의 무엇을 끊었는지 정리합니다.</p>
-                <span>예: “대화가 이어지면서 수업 설명이 끊겼어요.”</span>
-              </article>
-              <article>
-                <strong>경계 설정자</strong>
-                <p>감정이 아니라 기준으로 허용 범위와 멈출 선을 세웁니다.</p>
-                <span>예: “친구를 비웃는 말은 우리 교실에서 허용하지 않습니다.”</span>
-              </article>
-              <article>
-                <strong>시스템 연결자</strong>
-                <p>반복되는 문제를 수업 방식, 학급 문화, 학교 절차로 연결합니다.</p>
-                <span>예: “질문은 설명이 끝난 뒤 5분 동안 받겠습니다.”</span>
-              </article>
-            </div>
-          </section>
-
-          <section class="panel compare-panel">
-            <h3>초보 교사가 구분해야 할 차이</h3>
-            <div class="compare-grid">
-              <div>
-                <strong>감정 반응</strong>
-                <p>“왜 또 그래?”, “조용히 하랬지?”, “너 때문에 수업이 안 되잖아.”</p>
-              </div>
-              <div>
-                <strong>역할 선택</strong>
-                <p>“지금 대화가 이어지면서 설명 흐름이 멈췄습니다. 우리 공동체에서는 듣는 흐름을 방해하는 대화는 여기서 멈춥니다.”</p>
-              </div>
-            </div>
-          </section>
         </section>
 
-        <section class="view" id="scenario-view" aria-labelledby="scenario-title">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Practice 01</p>
-              <h2 id="scenario-title">실전 연습</h2>
-            </div>
-            <button class="ghost-button" type="button" id="reset-practice">초기화</button>
+        <section class="view" id="cards-view" aria-labelledby="cards-title">
+          <div class="section-title">
+            <p class="eyebrow">Sentence Drill</p>
+            <h2 id="cards-title">역할별 문장 카드</h2>
           </div>
 
-          <div class="step-strip" aria-label="연습 흐름">
-            <span class="is-current">1. 상황</span>
-            <span>2. 역할</span>
-            <span>3. 행동</span>
-            <span>4. 언어</span>
-          </div>
-
-          <section class="scenario-filters" aria-label="문제상황 필터">
-            <button class="filter-chip is-active" type="button" data-category="all">전체</button>
-            <button class="filter-chip" type="button" data-category="수업흐름">수업흐름</button>
-            <button class="filter-chip" type="button" data-category="말의경계">말의경계</button>
-            <button class="filter-chip" type="button" data-category="갈등">갈등</button>
-            <button class="filter-chip" type="button" data-category="활동전환">활동전환</button>
-          </section>
-
-          <div class="practice-layout decision-layout">
-            <section class="panel scenario-panel">
-              <label for="scenario-select">교실 장면</label>
-              <select id="scenario-select"></select>
-              <div class="scenario-detail" id="scenario-detail"></div>
-            </section>
-
-            <section class="panel">
-              <h3>지금 필요한 역할</h3>
-              <div class="role-selector" id="role-selector"></div>
-              <div class="role-detail" id="role-detail"></div>
-              <div class="decision-feedback" id="role-feedback"></div>
-            </section>
-
-            <section class="panel">
-              <h3>다음 행동 선택</h3>
-              <div class="action-selector" id="action-selector"></div>
-              <div class="action-detail" id="action-detail"></div>
-            </section>
-          </div>
-
-          <section class="panel sentence-panel">
-            <div class="panel-header">
-              <h3>교실 언어 선택 또는 직접 작성</h3>
-              <span id="sentence-count" class="count-label"></span>
-            </div>
-            <div class="sentence-grid" id="sentence-grid"></div>
-            <label class="writer-label" for="draft-sentence">내 문장</label>
-            <textarea
-              id="draft-sentence"
-              rows="4"
-              placeholder="선택한 문장을 바탕으로 내 교실에서 말할 문장으로 바꿔 써 보세요."
-            ></textarea>
-          </section>
-
-          <section class="panel decision-summary" id="decision-summary" aria-label="선택 요약"></section>
-
-          <section class="feedback-row" aria-label="문장 점검 기준">
-            <div class="check-item" data-check="fact">
-              <strong>사실</strong>
-              <span>상황을 있는 그대로 말했나요?</span>
-            </div>
-            <div class="check-item" data-check="not-person">
-              <strong>비지목</strong>
-              <span>학생 인격보다 장면을 말했나요?</span>
-            </div>
-            <div class="check-item" data-check="boundary">
-              <strong>기준</strong>
-              <span>허용 범위가 분명한가요?</span>
-            </div>
-            <div class="check-item" data-check="system">
-              <strong>연결</strong>
-              <span>반복 구조를 다루고 있나요?</span>
-            </div>
-          </section>
-        </section>
-
-        <section class="view" id="flow-view" aria-labelledby="flow-title">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Practice 02</p>
-              <h2 id="flow-title">4단계 흐름 연습</h2>
-            </div>
-            <button class="ghost-button" type="button" id="copy-flow">흐름 복사</button>
-          </div>
-
-          <section class="panel">
-            <label for="flow-scenario-select">연습할 장면</label>
-            <select id="flow-scenario-select"></select>
-          </section>
-
-          <div class="flow-board" id="flow-board"></div>
-        </section>
-
-        <section class="view" id="library-view" aria-labelledby="library-title">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Reference</p>
-              <h2 id="library-title">문장 자료실</h2>
-            </div>
-            <input id="search-input" class="search-input" type="search" placeholder="문장 검색" />
-          </div>
-
-          <div class="library-layout">
-            <section class="panel">
-              <h3>역할 필터</h3>
-              <div class="filter-list" id="library-filters"></div>
-            </section>
-            <section class="panel library-results">
-              <div class="panel-header">
-                <h3>기준 문장</h3>
-                <span id="library-count" class="count-label"></span>
-              </div>
-              <div class="sentence-list" id="library-list"></div>
-            </section>
+          <div class="role-filter" id="sentence-role-filter"></div>
+          <article class="flashcard sentence-flashcard" id="practice-sentence-card" tabindex="0" role="button"></article>
+          <div class="card-actions">
+            <button class="secondary-button" type="button" id="prev-sentence">이전</button>
+            <button class="primary-button" type="button" id="next-sentence">다음 문장</button>
           </div>
         </section>
       </main>
+
+      <footer class="credit">
+        이 웹은 리피스평화교육연구소 대표이자 유튜브
+        <strong>학생생활교육 마스터클래스</strong> 운영자인
+        <strong>정진 소장님</strong>의 교육과 자료를 바탕으로 제작되었습니다.
+      </footer>
     </div>
 
     <script src="./app.js"></script>

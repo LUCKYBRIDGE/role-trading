@@ -312,14 +312,60 @@ scenarios.forEach((scenario) => {
   }));
 });
 
+const studyCards = [
+  {
+    label: "핵심 개념",
+    front: "역할은 태도가 아니라 위치입니다.",
+    back:
+      "친절하게 말하느냐 단호하게 말하느냐보다, 교사가 학생과 맞서는 위치에 서는지 공동체를 대표해 기준을 말하는 위치에 서는지가 중요합니다.",
+  },
+  {
+    label: "역할의 형성",
+    front: "역할은 익숙하고 안전했던 행동 방식입니다.",
+    back:
+      "지금까지의 경험 속에서 나를 지켜 주었거나 가장 익숙했던 반응이 역할로 굳어집니다. 그래서 마음먹는다고 바로 바뀌지 않고 반복 연습이 필요합니다.",
+  },
+  {
+    label: "생활교육의 방향",
+    front: "통제할수록 1대1 대치가 되기 쉽습니다.",
+    back:
+      "교사의 목표는 학생을 이기는 것이 아니라, 학생이 공동체 안에서 자기 역할을 다시 설정할 수 있도록 기준과 흐름을 세우는 것입니다.",
+  },
+  {
+    label: "관찰자",
+    front: "먼저 판단하지 않고 장면을 봅니다.",
+    back:
+      "누가 잘못했는지보다 지금 무슨 일이 벌어지고 있는지, 웃음과 소리와 시선이 어떻게 움직이는지 말합니다.",
+  },
+  {
+    label: "사건 정리자",
+    front: "끊어진 흐름을 언어로 고정합니다.",
+    back:
+      "장난인지 의도적인지 따지기 전에 수업, 발표, 활동, 안전한 분위기 중 무엇이 끊겼는지 정리합니다.",
+  },
+  {
+    label: "경계 설정자",
+    front: "응보적으로 혼내지 않고 기준을 세웁니다.",
+    back:
+      "공동체를 대표해 여기까지 가능하고 여기부터는 멈춰야 한다고 말합니다. 경계는 처벌이 아니라 다시 공동체로 들어오는 문입니다.",
+  },
+  {
+    label: "시스템 연결자",
+    front: "반복되는 문제는 구조로 봅니다.",
+    back:
+      "한 학생만 지목하지 않고 수업 리듬, 질문 방식, 학급 문화, 학교 절차와 연결해 같은 문제가 덜 반복되게 만듭니다.",
+  },
+];
+
 const state = {
-  view: "theory",
-  scenarioId: scenarios[0].id,
-  roleId: "observer",
-  actionId: scenarios[0].actions[0].id,
-  category: "all",
-  libraryRole: "all",
-  search: "",
+  view: "study",
+  studyIndex: 0,
+  studyFlipped: false,
+  quizIndex: 0,
+  selectedRole: null,
+  selectedResponse: null,
+  sentenceRole: "observer",
+  sentenceIndex: 0,
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -328,294 +374,13 @@ function getRole(roleId) {
   return roles.find((role) => role.id === roleId);
 }
 
-function getScenario(scenarioId) {
-  return scenarios.find((scenario) => scenario.id === scenarioId);
-}
-
 function roleName(roleId) {
   return getRole(roleId)?.name || roleId;
 }
 
-function visibleScenarios() {
-  if (state.category === "all") return scenarios;
-  return scenarios.filter((scenario) => scenario.category === state.category);
-}
-
-function selectScenario(scenarioId) {
-  const scenario = getScenario(scenarioId);
-  state.scenarioId = scenario.id;
-  state.roleId = scenario.recommended[0];
-  const action = scenario.actions.find((item) => item.role === state.roleId) || scenario.actions[0];
-  state.actionId = action?.id || null;
-}
-
-function renderScenarioOptions(select, useFilter = true) {
-  const options = useFilter ? visibleScenarios() : scenarios;
-  if (!options.some((scenario) => scenario.id === state.scenarioId)) {
-    selectScenario(options[0].id);
-  }
-  select.innerHTML = options
-    .map((scenario) => `<option value="${scenario.id}">${scenario.title}</option>`)
-    .join("");
-  select.value = state.scenarioId;
-}
-
-function renderScenarioDetail() {
-  const scenario = getScenario(state.scenarioId);
-  $("#scenario-detail").innerHTML = `
-    <div class="scenario-meta">
-      <span>${scenario.category}</span>
-      <span>긴급도 ${scenario.urgency}</span>
-    </div>
-    <h3>${scenario.title}</h3>
-    <p>${scenario.situation}</p>
-    <div class="focus-box">${scenario.focus}</div>
-    <div class="tag-row">
-      ${scenario.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-    </div>
-  `;
-}
-
-function renderRoleSelector() {
-  const scenario = getScenario(state.scenarioId);
-  $("#role-selector").innerHTML = roles
-    .map(
-      (role) => `
-        <button class="role-option ${role.id === state.roleId ? "is-active" : ""}" type="button" data-role="${role.id}">
-          <span>${role.name}</span>
-          ${scenario.recommended.includes(role.id) ? '<small>추천</small>' : ""}
-        </button>
-      `,
-    )
-    .join("");
-
-  $("#role-selector").querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.roleId = button.dataset.role;
-      const nextAction = getScenario(state.scenarioId).actions.find((action) => action.role === state.roleId);
-      state.actionId = nextAction?.id || null;
-      renderScenarioPractice();
-    });
-  });
-}
-
-function renderRoleDetail() {
-  const role = getRole(state.roleId);
-  $("#role-detail").innerHTML = `
-    <p><strong>${role.short}</strong></p>
-    <p>${role.description}</p>
-  `;
-}
-
-function renderRoleFeedback() {
-  const scenario = getScenario(state.scenarioId);
-  const isRecommended = scenario.recommended.includes(state.roleId);
-  $("#role-feedback").innerHTML = isRecommended
-    ? `<strong>적절한 선택</strong><span>이 장면에서는 ${roleName(state.roleId)} 역할이 실제 개입으로 이어지기 좋습니다.</span>`
-    : `<strong>주의</strong><span>이 역할도 가능하지만, 지금 장면에서는 ${scenario.recommended.map(roleName).join(", ")}부터 시작하는 편이 안정적입니다.</span>`;
-  $("#role-feedback").classList.toggle("is-warning", !isRecommended);
-}
-
-function renderActionSelector() {
-  const scenario = getScenario(state.scenarioId);
-  const currentRoleActions = scenario.actions.filter((action) => action.role === state.roleId);
-  const actions = currentRoleActions.length ? currentRoleActions : scenario.actions;
-  if (!actions.some((action) => action.id === state.actionId)) {
-    state.actionId = actions[0]?.id || null;
-  }
-
-  $("#action-selector").innerHTML = actions
-    .map(
-      (action) => `
-        <button class="action-option ${action.id === state.actionId ? "is-active" : ""}" type="button" data-action="${action.id}">
-          <strong>${action.title}</strong>
-          <span>${roleName(action.role)}</span>
-        </button>
-      `,
-    )
-    .join("");
-
-  $("#action-selector").querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.actionId = button.dataset.action;
-      renderActionDetail();
-      renderDecisionSummary();
-    });
-  });
-
-  renderActionDetail();
-}
-
-function renderActionDetail() {
-  const scenario = getScenario(state.scenarioId);
-  const action = scenario.actions.find((item) => item.id === state.actionId);
-  $("#action-detail").innerHTML = action
-    ? `<p><strong>${action.title}</strong></p><p>${action.detail}</p>`
-    : `<p>이 역할에 맞는 행동을 직접 정해 보세요.</p>`;
-}
-
-function filteredSentencesForPractice() {
-  const scenario = getScenario(state.scenarioId);
-  const base = sentences.filter((sentence) => sentence.role === state.roleId);
-  if (state.roleId !== "system") return base.slice(0, 9);
-
-  if (scenario.id === "mocking-language" || scenario.id === "conflict-voices") {
-    return base.filter((sentence) => sentence.level !== "수업 안 시스템").slice(0, 9);
-  }
-  if (scenario.id === "group-stuck") {
-    return base.filter((sentence) => sentence.level !== "학년부·학교 시스템").slice(0, 9);
-  }
-  return base.slice(0, 9);
-}
-
-function renderSentenceGrid() {
-  const items = filteredSentencesForPractice();
-  $("#sentence-count").textContent = `${items.length}개 추천`;
-  $("#sentence-grid").innerHTML = items
-    .map(
-      (sentence) => `
-        <button class="sentence-card" type="button" data-text="${escapeAttribute(sentence.text)}">
-          <span class="sentence-meta">${roleName(sentence.role)}${sentence.level ? ` · ${sentence.level}` : ""}</span>
-          ${sentence.text}
-        </button>
-      `,
-    )
-    .join("");
-
-  $("#sentence-grid").querySelectorAll(".sentence-card").forEach((button) => {
-    button.addEventListener("click", () => {
-      $("#sentence-grid").querySelectorAll(".sentence-card").forEach((card) => card.classList.remove("is-selected"));
-      button.classList.add("is-selected");
-      $("#draft-sentence").value = button.dataset.text;
-      updateFeedback();
-      renderDecisionSummary();
-    });
-  });
-}
-
-function updateFeedback() {
-  const text = $("#draft-sentence").value;
-  const role = getRole(state.roleId);
-  const checks = {
-    fact: /지금|방금|이어지|보이|상황|분위기|목소리|흐름/.test(text),
-    "not-person": /누가|흐름|수업|설명|발표|활동|상황|이어지/.test(text) && !/너는|맨날|왜 그래/.test(text),
-    boundary: /허용하지|멈춥|선|넘지|기준|않겠습니다/.test(text),
-    system: /담임|학급|학년부|학교|절차|회의|규칙|방식|활동|질문|설명 5분/.test(text),
-  };
-
-  document.querySelectorAll(".check-item").forEach((item) => {
-    item.classList.toggle("is-on", checks[item.dataset.check] || item.dataset.check === role.check);
-  });
-}
-
-function renderScenarioPractice() {
-  renderScenarioOptions($("#scenario-select"));
-  renderScenarioDetail();
-  renderRoleSelector();
-  renderRoleDetail();
-  renderRoleFeedback();
-  renderActionSelector();
-  renderSentenceGrid();
-  renderDecisionSummary();
-  updateFeedback();
-}
-
-function renderDecisionSummary() {
-  const scenario = getScenario(state.scenarioId);
-  const action = scenario.actions.find((item) => item.id === state.actionId);
-  const sentence = $("#draft-sentence").value.trim() || "아직 작성하지 않았습니다.";
-  $("#decision-summary").innerHTML = `
-    <div>
-      <p class="eyebrow">선택 요약</p>
-      <h3>${scenario.title}</h3>
-    </div>
-    <dl>
-      <div><dt>역할</dt><dd>${roleName(state.roleId)}</dd></div>
-      <div><dt>행동</dt><dd>${action ? action.title : "직접 선택"}</dd></div>
-      <div><dt>언어</dt><dd>${sentence}</dd></div>
-    </dl>
-  `;
-}
-
-function renderFlowBoard() {
-  const scenario = getScenario($("#flow-scenario-select").value || state.scenarioId);
-  $("#flow-board").innerHTML = roles
-    .map((role, index) => {
-      const sample = sentences.find((sentence) => sentence.role === role.id)?.text || "";
-      return `
-        <section class="flow-step">
-          <h3>${index + 1}. ${role.name}</h3>
-          <p>${role.short}. ${role.description}</p>
-          <textarea data-flow-role="${role.id}" aria-label="${role.name} 문장">${sample}</textarea>
-        </section>
-      `;
-    })
-    .join("");
-
-  $("#flow-board")
-    .querySelectorAll("textarea")
-    .forEach((textarea) => {
-      const saved = localStorage.getItem(`flow:${scenario.id}:${textarea.dataset.flowRole}`);
-      if (saved) textarea.value = saved;
-      textarea.addEventListener("input", () => {
-        localStorage.setItem(`flow:${scenario.id}:${textarea.dataset.flowRole}`, textarea.value);
-      });
-    });
-}
-
-function renderLibraryFilters() {
-  const options = [{ id: "all", name: "전체" }, ...roles];
-  $("#library-filters").innerHTML = options
-    .map(
-      (option) => `
-        <button class="filter-chip ${option.id === state.libraryRole ? "is-active" : ""}" type="button" data-role="${option.id}">
-          ${option.name}
-        </button>
-      `,
-    )
-    .join("");
-
-  $("#library-filters").querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.libraryRole = button.dataset.role;
-      renderLibrary();
-    });
-  });
-}
-
-function renderLibraryList() {
-  const query = state.search.trim().toLowerCase();
-  const list = sentences.filter((sentence) => {
-    const roleMatches = state.libraryRole === "all" || sentence.role === state.libraryRole;
-    const textMatches =
-      !query ||
-      sentence.text.toLowerCase().includes(query) ||
-      roleName(sentence.role).toLowerCase().includes(query) ||
-      (sentence.level || "").toLowerCase().includes(query);
-    return roleMatches && textMatches;
-  });
-
-  $("#library-count").textContent = `${list.length}개`;
-  $("#library-list").innerHTML = list
-    .map(
-      (sentence) => `
-        <div class="sentence-row">
-          <strong>${roleName(sentence.role)}${sentence.level ? ` · ${sentence.level}` : ""}</strong>
-          ${sentence.text}
-        </div>
-      `,
-    )
-    .join("");
-}
-
-function renderLibrary() {
-  renderLibraryFilters();
-  renderLibraryList();
-}
-
 function switchView(view) {
   state.view = view;
-  document.querySelectorAll(".nav-button").forEach((button) => {
+  document.querySelectorAll(".tab").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.view === view);
   });
   document.querySelectorAll(".view").forEach((viewEl) => {
@@ -623,79 +388,272 @@ function switchView(view) {
   });
 }
 
-function escapeAttribute(value) {
-  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+function renderStudyCard() {
+  const card = studyCards[state.studyIndex];
+  $("#study-card").innerHTML = `
+    <span class="label">${card.label} · ${state.studyIndex + 1}/${studyCards.length}</span>
+    <h3>${state.studyFlipped ? card.back : card.front}</h3>
+    <p>${state.studyFlipped ? "다시 누르면 앞면으로 돌아갑니다." : "카드를 뒤집어 설명을 확인하세요."}</p>
+  `;
+}
+
+function moveStudy(delta) {
+  state.studyIndex = (state.studyIndex + delta + studyCards.length) % studyCards.length;
+  state.studyFlipped = false;
+  renderStudyCard();
+}
+
+function currentScenario() {
+  return scenarios[state.quizIndex];
+}
+
+function recommendedRole(scenario) {
+  return scenario.recommended[0];
+}
+
+function renderQuiz() {
+  const scenario = currentScenario();
+  state.selectedRole = null;
+  state.selectedResponse = null;
+  $("#quiz-meta").innerHTML = `<span>${scenario.category}</span><span>긴급도 ${scenario.urgency}</span>`;
+  $("#quiz-scenario-title").textContent = scenario.title;
+  $("#quiz-scenario-text").textContent = scenario.situation;
+  $("#quiz-tags").innerHTML = scenario.tags.map((tag) => `<span>${tag}</span>`).join("");
+  $("#role-choices").innerHTML = roles
+    .map(
+      (role) => `
+        <button class="choice-button" type="button" data-role="${role.id}">
+          <strong>${role.name}</strong>
+          <span>${role.short}</span>
+        </button>
+      `,
+    )
+    .join("");
+  $("#quiz-feedback").className = "feedback";
+  $("#quiz-feedback").innerHTML = "";
+  $("#next-step-panel").className = "choice-panel is-muted is-locked";
+  $("#response-choices").innerHTML = "";
+  $("#response-feedback").className = "feedback";
+  $("#response-feedback").innerHTML = "";
+  $("#action-card").className = "mini-card";
+  $("#sentence-card").className = "mini-card";
+  $("#action-card").innerHTML = "";
+  $("#sentence-card").innerHTML = "";
+  bindRoleChoices();
+}
+
+function bindRoleChoices() {
+  $("#role-choices").querySelectorAll(".choice-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectRole(button.dataset.role);
+    });
+  });
+}
+
+function selectRole(roleId) {
+  const scenario = currentScenario();
+  const correctRole = recommendedRole(scenario);
+  const isCorrect = roleId === correctRole;
+  state.selectedRole = roleId;
+
+  $("#role-choices").querySelectorAll(".choice-button").forEach((button) => {
+    button.classList.toggle("is-correct", button.dataset.role === correctRole);
+    button.classList.toggle("is-wrong", button.dataset.role === roleId && !isCorrect);
+  });
+
+  $("#quiz-feedback").className = `feedback is-visible ${isCorrect ? "" : "is-warning"}`;
+  $("#quiz-feedback").innerHTML = isCorrect
+    ? `<strong>좋은 선택입니다.</strong> 이 장면은 먼저 ${roleName(correctRole)}로 서서 ${scenario.focus}`
+    : `<strong>다시 생각해 볼 지점이 있습니다.</strong> 이 장면에서는 ${roleName(correctRole)}부터 시작하는 편이 안정적입니다. ${scenario.focus}`;
+
+  renderNextStep(correctRole);
+}
+
+function renderNextStep(roleId) {
+  const scenario = currentScenario();
+  $("#next-step-panel").className = "choice-panel is-muted";
+  renderResponseChoices(roleId);
+  $("#response-feedback").className = "feedback";
+  $("#response-feedback").innerHTML = "";
+  $("#action-card").className = "mini-card";
+  $("#sentence-card").className = "mini-card";
+  $("#action-card").innerHTML = "";
+  $("#sentence-card").innerHTML = "";
+}
+
+function renderResponseChoices(roleId) {
+  const scenario = currentScenario();
+  const options = responseOptionsForScenario(scenario, roleId);
+  $("#response-choices").innerHTML = options
+    .map(
+      (option) => `
+        <button class="choice-button" type="button" data-response="${option.id}">
+          <strong>${option.title}</strong>
+          <span>${option.text}</span>
+        </button>
+      `,
+    )
+    .join("");
+
+  $("#response-choices").querySelectorAll(".choice-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectResponse(button.dataset.response, roleId);
+    });
+  });
+}
+
+function responseOptionsForScenario(scenario, roleId) {
+  const action = scenario.actions.find((item) => item.role === roleId) || scenario.actions[0];
+  const sentence = sentenceForScenario(roleId, scenario);
+  return [
+    {
+      id: "role-based",
+      correct: true,
+      title: "역할에 맞춰 개입한다",
+      text: `${action.title}. “${sentence.text}”`,
+      feedback: "감정으로 밀어붙이기보다 현재 장면에서 필요한 역할과 공동체 기준을 함께 세우는 선택입니다.",
+      action,
+      sentence,
+    },
+    {
+      id: "control",
+      correct: false,
+      title: "즉시 통제한다",
+      text: "“너 또 왜 그래? 조용히 하라고 했지. 한 번만 더 하면 바로 벌점이야.”",
+      feedback: "빠르게 멈출 수는 있지만 교사와 학생의 1대1 대치로 흐르기 쉽습니다.",
+      action,
+      sentence,
+    },
+    {
+      id: "avoid",
+      correct: false,
+      title: "그냥 넘긴다",
+      text: "“됐어, 그냥 하던 거 해.” 하고 장면을 정리하지 않은 채 넘어간다.",
+      feedback: "갈등은 피할 수 있지만 공동체 기준이 흐려지고 같은 상황이 반복될 가능성이 큽니다.",
+      action,
+      sentence,
+    },
+  ];
+}
+
+function selectResponse(responseId, roleId) {
+  const scenario = currentScenario();
+  const options = responseOptionsForScenario(scenario, roleId);
+  const selected = options.find((option) => option.id === responseId);
+
+  $("#response-choices").querySelectorAll(".choice-button").forEach((button) => {
+    const option = options.find((item) => item.id === button.dataset.response);
+    button.classList.toggle("is-correct", option.correct);
+    button.classList.toggle("is-wrong", option.id === responseId && !option.correct);
+  });
+
+  $("#response-feedback").className = `feedback is-visible ${selected.correct ? "" : "is-warning"}`;
+  $("#response-feedback").innerHTML = selected.correct
+    ? `<strong>적절한 언행입니다.</strong> ${selected.feedback}`
+    : `<strong>아쉬운 선택입니다.</strong> ${selected.feedback}`;
+
+  renderExplanation(selected.action, selected.sentence);
+}
+
+function renderExplanation(action, sentence) {
+  $("#action-card").className = "mini-card is-visible";
+  $("#action-card").innerHTML = `
+    <span class="label">추천 행동</span>
+    <strong>${action.title}</strong>
+    <p>${action.detail}</p>
+  `;
+  $("#sentence-card").className = "mini-card is-visible";
+  $("#sentence-card").innerHTML = `
+    <span class="label">추천 언어</span>
+    <strong>${roleName(sentence.role)}${sentence.level ? ` · ${sentence.level}` : ""}</strong>
+    <p>${sentence.text}</p>
+  `;
+}
+
+function sentenceForScenario(roleId, scenario) {
+  const pool = sentences.filter((sentence) => sentence.role === roleId);
+  if (roleId !== "system") return pool[scenario.id.length % pool.length];
+  if (scenario.category === "말의경계" || scenario.category === "갈등") {
+    return pool.find((sentence) => sentence.level === "학급 시스템") || pool[0];
+  }
+  return pool.find((sentence) => sentence.level === "수업 안 시스템") || pool[0];
+}
+
+function moveQuiz(delta) {
+  state.quizIndex = (state.quizIndex + delta + scenarios.length) % scenarios.length;
+  renderQuiz();
+}
+
+function sentencePool() {
+  return sentences.filter((sentence) => sentence.role === state.sentenceRole);
+}
+
+function renderSentenceFilters() {
+  $("#sentence-role-filter").innerHTML = roles
+    .map(
+      (role) => `
+        <button class="role-chip ${role.id === state.sentenceRole ? "is-active" : ""}" type="button" data-role="${role.id}">
+          ${role.name}
+        </button>
+      `,
+    )
+    .join("");
+
+  $("#sentence-role-filter").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.sentenceRole = button.dataset.role;
+      state.sentenceIndex = 0;
+      renderSentenceFilters();
+      renderSentenceCard();
+    });
+  });
+}
+
+function renderSentenceCard() {
+  const pool = sentencePool();
+  const sentence = pool[state.sentenceIndex % pool.length];
+  $("#practice-sentence-card").innerHTML = `
+    <span class="label">${roleName(sentence.role)}${sentence.level ? ` · ${sentence.level}` : ""} · ${state.sentenceIndex + 1}/${pool.length}</span>
+    <h3>${sentence.text}</h3>
+    <p>소리 내어 읽고, 내 교실 말투로 한 번 바꿔 말해 보세요.</p>
+  `;
+}
+
+function moveSentence(delta) {
+  const pool = sentencePool();
+  state.sentenceIndex = (state.sentenceIndex + delta + pool.length) % pool.length;
+  renderSentenceCard();
 }
 
 function bindEvents() {
-  document.querySelectorAll(".nav-button").forEach((button) => {
+  document.querySelectorAll(".tab").forEach((button) => {
     button.addEventListener("click", () => switchView(button.dataset.view));
   });
 
-  document.querySelectorAll("[data-view-jump]").forEach((button) => {
-    button.addEventListener("click", () => switchView(button.dataset.viewJump));
+  $("#study-card").addEventListener("click", () => {
+    state.studyFlipped = !state.studyFlipped;
+    renderStudyCard();
   });
-
-  $("#scenario-select").addEventListener("change", (event) => {
-    selectScenario(event.target.value);
-    renderScenarioPractice();
+  $("#flip-study").addEventListener("click", () => {
+    state.studyFlipped = !state.studyFlipped;
+    renderStudyCard();
   });
+  $("#prev-study").addEventListener("click", () => moveStudy(-1));
+  $("#next-study").addEventListener("click", () => moveStudy(1));
 
-  $("#draft-sentence").addEventListener("input", () => {
-    updateFeedback();
-    renderDecisionSummary();
-  });
+  $("#prev-quiz").addEventListener("click", () => moveQuiz(-1));
+  $("#next-quiz").addEventListener("click", () => moveQuiz(1));
 
-  document.querySelectorAll(".scenario-filters .filter-chip").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.category = button.dataset.category;
-      document.querySelectorAll(".scenario-filters .filter-chip").forEach((chip) => {
-        chip.classList.toggle("is-active", chip === button);
-      });
-      const first = visibleScenarios()[0];
-      selectScenario(first.id);
-      $("#draft-sentence").value = "";
-      renderScenarioPractice();
-    });
-  });
-
-  $("#reset-practice").addEventListener("click", () => {
-    state.category = "all";
-    document.querySelectorAll(".scenario-filters .filter-chip").forEach((chip) => {
-      chip.classList.toggle("is-active", chip.dataset.category === "all");
-    });
-    selectScenario(scenarios[0].id);
-    $("#scenario-select").value = state.scenarioId;
-    $("#draft-sentence").value = "";
-    renderScenarioPractice();
-  });
-
-  $("#flow-scenario-select").addEventListener("change", renderFlowBoard);
-
-  $("#copy-flow").addEventListener("click", async () => {
-    const lines = Array.from($("#flow-board").querySelectorAll("textarea")).map((textarea) => {
-      return `${roleName(textarea.dataset.flowRole)}: ${textarea.value.trim()}`;
-    });
-    await navigator.clipboard.writeText(lines.join("\n"));
-    $("#copy-flow").textContent = "복사됨";
-    setTimeout(() => {
-      $("#copy-flow").textContent = "흐름 복사";
-    }, 1400);
-  });
-
-  $("#search-input").addEventListener("input", (event) => {
-    state.search = event.target.value;
-    renderLibraryList();
-  });
+  $("#prev-sentence").addEventListener("click", () => moveSentence(-1));
+  $("#next-sentence").addEventListener("click", () => moveSentence(1));
 }
 
 function init() {
-  renderScenarioOptions($("#scenario-select"));
-  renderScenarioOptions($("#flow-scenario-select"), false);
   bindEvents();
-  renderScenarioPractice();
-  renderFlowBoard();
-  renderLibrary();
+  renderStudyCard();
+  renderQuiz();
+  renderSentenceFilters();
+  renderSentenceCard();
 }
 
 init();
