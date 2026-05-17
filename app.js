@@ -198,6 +198,213 @@ const scenarios = [
       ["system", "설명과 활동 시간을 쪼개기", "설명 5분, 활동 10분처럼 리듬을 나누어 다시 운영합니다."],
     ],
   },
+  {
+    id: "hate-expression-joke",
+    title: "혐오 표현이 농담처럼 나온 장면",
+    category: "말의경계",
+    urgency: "높음",
+    focus: "발언자를 몰아세우기보다 표현이 공동체 안전을 흔들었다는 기준을 세웁니다.",
+    situation:
+      "수업 중 한 학생이 특정 집단을 낮추는 말을 했고 몇몇 학생이 웃었습니다. 누군가는 표정을 굳혔지만 교실은 장난처럼 넘기려는 분위기입니다.",
+    tags: ["혐오 표현", "공동체 안전", "말의 기준"],
+    recommended: ["observer", "summarizer", "boundary", "system"],
+    actions: [
+      ["observer", "웃음과 침묵을 함께 보기", "몇 명은 웃었고 몇 명은 웃지 않았다는 반응 차이를 드러냅니다."],
+      ["summarizer", "안전한 분위기 손상 정리하기", "특정 집단을 낮추는 말로 교실 분위기가 바뀌었다는 점을 정리합니다."],
+      ["boundary", "정체성을 웃음거리로 삼지 않기", "누군가의 정체성이나 특징을 낮추는 말은 허용하지 않는다고 말합니다."],
+      ["system", "말의 기준을 공동 절차로 연결하기", "반복된다면 학급 차원의 말의 기준과 학교 절차를 확인합니다."],
+    ],
+  },
+  {
+    id: "private-chat-during-presentation",
+    title: "발표 중 옆 대화가 이어지는 장면",
+    category: "수업흐름",
+    urgency: "중간",
+    focus: "발표자를 보호하고 듣는 공동체의 역할을 다시 세웁니다.",
+    situation:
+      "한 학생이 발표하고 있는데 옆자리 두 학생이 작은 목소리로 계속 이야기합니다. 발표자는 말끝을 흐리고 주변 학생들의 시선도 흩어집니다.",
+    tags: ["발표", "옆 대화", "듣는 역할"],
+    recommended: ["observer", "summarizer", "boundary"],
+    actions: [
+      ["observer", "발표 중 대화 흐름 보기", "발표자의 말과 옆 대화가 동시에 이어지는 장면을 말합니다."],
+      ["summarizer", "발표 흐름이 끊긴 점 정리하기", "옆 대화로 발표를 듣는 흐름이 멈췄다고 정리합니다."],
+      ["boundary", "발표를 듣는 기준 세우기", "발표 중에는 개인 대화를 멈추고 발표자의 말을 듣는 기준을 세웁니다."],
+      ["system", "질문 시간을 뒤로 분리하기", "발표가 끝난 뒤 질문·확인 시간을 따로 안내합니다."],
+    ],
+  },
+  {
+    id: "movement-before-instruction",
+    title: "설명이 끝나기 전에 움직이는 장면",
+    category: "활동전환",
+    urgency: "낮음",
+    focus: "학생을 붙잡기보다 전환 신호와 활동 시작 조건을 선명하게 합니다.",
+    situation:
+      "과제 설명이 끝나기도 전에 몇몇 학생이 자리에서 일어나고 모둠 쪽으로 이동합니다. 아직 설명을 듣는 학생들은 무엇을 해야 하는지 놓칩니다.",
+    tags: ["활동 전환", "자리 이동", "설명 누락"],
+    recommended: ["observer", "summarizer", "system"],
+    actions: [
+      ["observer", "움직임이 먼저 시작된 장면 말하기", "설명이 끝나기 전에 이동이 시작된 상태를 서술합니다."],
+      ["summarizer", "다음 활동 안내가 끊긴 점 정리하기", "움직임 때문에 설명이 끝까지 전달되지 못했다고 정리합니다."],
+      ["system", "전환 순서 다시 안내하기", "설명 완료, 역할 확인, 이동 시작 순서로 활동 구조를 다시 세웁니다."],
+    ],
+  },
+  {
+    id: "phone-distraction",
+    title: "휴대폰에 시선이 쏠린 장면",
+    category: "수업흐름",
+    urgency: "중간",
+    focus: "개별 압수 대결보다 수업 참여 기준과 시선의 흐름을 먼저 다룹니다.",
+    situation:
+      "수업 중 한 학생이 휴대폰을 보고 있고 주변 학생들도 화면 쪽으로 시선을 돌립니다. 교사가 이름을 부르면 학생은 아니라고 버티려는 표정입니다.",
+    tags: ["휴대폰", "시선 분산", "수업 참여"],
+    recommended: ["observer", "boundary", "system"],
+    actions: [
+      ["observer", "시선이 수업에서 벗어난 장면 말하기", "몇몇 학생의 시선이 수업 자료가 아니라 화면 쪽으로 이동한 사실을 말합니다."],
+      ["boundary", "수업 중 기기 사용 기준 세우기", "수업 흐름을 끊는 방식의 휴대폰 사용은 허용하지 않는다고 말합니다."],
+      ["system", "기기 사용 절차로 연결하기", "필요하면 수업 중 기기 보관·사용 규칙을 학급 차원에서 다시 확인합니다."],
+    ],
+  },
+  {
+    id: "back-row-spectators",
+    title: "뒤쪽 학생들이 방관자로 빠지는 장면",
+    category: "수업흐름",
+    urgency: "낮음",
+    focus: "태도 지적보다 참여 구조가 특정 학생을 방관자로 만들고 있는지 봅니다.",
+    situation:
+      "앞쪽 몇 명만 계속 발표하고 뒤쪽 학생들은 엎드리거나 작은 장난을 합니다. 지적하면 잠깐 고개를 들지만 곧 다시 수업 밖으로 빠집니다.",
+    tags: ["참여 구조", "방관", "발언권"],
+    recommended: ["observer", "system"],
+    actions: [
+      ["observer", "참여가 나뉜 상태 말하기", "앞쪽은 발표에 들어와 있고 뒤쪽은 수업 밖으로 빠진 상태를 말합니다."],
+      ["system", "참여 순서 바꾸기", "뒤쪽 학생부터 짧게 시작하거나 개인 활동 후 공유하는 방식으로 참여 구조를 바꿉니다."],
+    ],
+  },
+  {
+    id: "same-student-always-blamed",
+    title: "늘 같은 학생만 지목되는 장면",
+    category: "갈등",
+    urgency: "중간",
+    focus: "한 학생만 문제로 고정하지 않고 반복되는 반응 구조를 봅니다.",
+    situation:
+      "수업이 흐트러질 때마다 같은 학생 이름이 먼저 불립니다. 실제로 주변 반응도 함께 있었지만 교실은 그 학생이 늘 문제라는 분위기로 굳어져 있습니다.",
+    tags: ["반복 지목", "낙인", "관계 구조"],
+    recommended: ["observer", "summarizer", "system"],
+    actions: [
+      ["observer", "개인보다 주변 반응 보기", "한 명의 행동뿐 아니라 주변에서 같이 반응한 흐름을 드러냅니다."],
+      ["summarizer", "반 전체 흐름으로 정리하기", "개인 문제로만 정리하지 않고 수업 집중이 함께 끊긴 상황을 말합니다."],
+      ["system", "반응 구조 점검하기", "특정 학생만 지목되는 구조가 반복되는지 담임·교과 차원에서 살핍니다."],
+    ],
+  },
+  {
+    id: "class-meeting-needed",
+    title: "수업 중 조롱이 학급 분위기로 번진 장면",
+    category: "말의경계",
+    urgency: "높음",
+    focus: "개별 사과로 끝내지 않고 학급의 말 문화와 반응 방식을 다룹니다.",
+    situation:
+      "한 학생을 놀리는 별명이 여러 시간에 걸쳐 반복됩니다. 말한 학생만 바뀔 뿐 주변 학생들은 웃고 지나가며, 당사자는 점점 말수가 줄어듭니다.",
+    tags: ["별명", "학급 문화", "반복 조롱"],
+    recommended: ["observer", "summarizer", "boundary", "system"],
+    actions: [
+      ["observer", "반복되는 웃음 구조 보기", "별명이 나올 때마다 웃음이 생기고 당사자가 위축되는 흐름을 봅니다."],
+      ["summarizer", "관계 손상 정리하기", "장난으로 소비되지만 한 학생이 반복적으로 낮춰지는 상황을 정리합니다."],
+      ["boundary", "별명과 조롱의 선 세우기", "누군가를 낮추는 별명과 반복 조롱은 허용하지 않는다고 말합니다."],
+      ["system", "학급회의로 연결하기", "학급 차원에서 말의 기준과 주변 학생의 반응 방식을 다룹니다."],
+    ],
+  },
+  {
+    id: "repeated-class-disruption",
+    title: "수업 방해가 여러 시간 반복되는 장면",
+    category: "학교절차",
+    urgency: "높음",
+    focus: "교사 혼자 버티지 않고 학년부와 학교 절차로 연결합니다.",
+    situation:
+      "특정 학생들의 수업 방해가 여러 교과에서 반복되고 있습니다. 교사마다 대응이 달라 학생들은 어느 시간에는 해도 되고 어느 시간에는 안 되는 것으로 받아들입니다.",
+    tags: ["반복 방해", "공동 기준", "학년부"],
+    recommended: ["system"],
+    actions: [
+      ["system", "공동 기준으로 연결하기", "교과별 개별 대응에 머물지 않고 학년부와 교과교사가 함께 기준을 맞춥니다."],
+      ["boundary", "수업권 침해 기준 말하기", "반복되는 수업 방해는 교실 안 구두 지도로만 끝낼 수 없다는 선을 세웁니다."],
+    ],
+  },
+  {
+    id: "possible-victim-check",
+    title: "피해 학생 확인이 필요한 장면",
+    category: "학교절차",
+    urgency: "높음",
+    focus: "즉석 훈계로 끝내지 않고 피해 여부와 절차를 확인합니다.",
+    situation:
+      "거친 말과 밀치는 행동이 있었고 주변 학생들은 장난이라고 말합니다. 하지만 한 학생은 말없이 자리를 피했고 이후 수업 참여를 하지 않습니다.",
+    tags: ["피해 확인", "관계 문제", "학교 절차"],
+    recommended: ["observer", "boundary", "system"],
+    actions: [
+      ["observer", "행동과 반응을 분리해 보기", "밀침과 거친 말, 그리고 자리를 피한 학생의 반응을 함께 봅니다."],
+      ["boundary", "신체적·언어적 선 세우기", "상대방을 밀거나 거친 말로 압박하는 방식은 허용하지 않는다고 말합니다."],
+      ["system", "피해 여부 확인 절차로 연결하기", "담임과 학년부에 공유하고 학생 간 피해가 발생했는지 확인합니다."],
+    ],
+  },
+  {
+    id: "teacher-explains-too-long",
+    title: "설명이 길어질수록 무너지는 장면",
+    category: "수업흐름",
+    urgency: "낮음",
+    focus: "학생 탓만 하지 않고 수업 리듬과 참여 지점을 조정합니다.",
+    situation:
+      "설명이 10분을 넘기면 잡담과 엎드림이 늘어납니다. 매번 조용히 하라고 말하지만 비슷한 시간대에 같은 흐름이 반복됩니다.",
+    tags: ["설명 길이", "수업 리듬", "참여 지점"],
+    recommended: ["observer", "system"],
+    actions: [
+      ["observer", "무너지는 시점 보기", "수업 시작 후 어느 정도 시간이 지나면 집중이 흩어지는지 봅니다."],
+      ["system", "설명과 활동을 나누기", "설명 5분 뒤 짧은 쓰기나 짝 활동을 넣어 참여 지점을 만듭니다."],
+    ],
+  },
+  {
+    id: "side-comments-after-correction",
+    title: "주의 후 말대꾸와 웃음이 이어지는 장면",
+    category: "갈등",
+    urgency: "중간",
+    focus: "말싸움으로 이어가지 않고 대화의 선을 분명히 합니다.",
+    situation:
+      "교사가 주의를 주자 학생이 작은 목소리로 말대꾸하고 주변에서 웃음이 납니다. 교사가 다시 반응하면 학생과의 말싸움처럼 보일 수 있습니다.",
+    tags: ["말대꾸", "웃음", "대결 구도"],
+    recommended: ["observer", "boundary"],
+    actions: [
+      ["observer", "주의 후 반응을 서술하기", "주의 뒤 말이 이어지고 주변 웃음이 생긴 장면을 말합니다."],
+      ["boundary", "말싸움으로 가지 않기", "이 상황을 말싸움으로 이어가지 않겠다고 선을 세우고 수업 흐름으로 돌아옵니다."],
+    ],
+  },
+  {
+    id: "group-role-imbalance",
+    title: "모둠 안 역할이 한 학생에게 몰리는 장면",
+    category: "활동전환",
+    urgency: "낮음",
+    focus: "개인 책임감만 요구하지 않고 모둠 안 역할 구조를 다시 나눕니다.",
+    situation:
+      "모둠활동에서 한 학생만 기록과 발표 준비를 하고 나머지는 구경하거나 잡담합니다. 열심히 하는 학생은 지친 표정이고 활동 결과도 한쪽으로 몰립니다.",
+    tags: ["모둠 역할", "참여 불균형", "활동 구조"],
+    recommended: ["observer", "summarizer", "system"],
+    actions: [
+      ["observer", "역할이 몰린 상태 보기", "한 명은 기록하고 다른 사람들은 아직 역할에 들어오지 않은 상태를 말합니다."],
+      ["summarizer", "모둠활동이 공동 활동이 되지 못한 점 정리하기", "역할이 나뉘지 않아 모둠활동이 한 사람에게 몰린 상황을 말합니다."],
+      ["system", "역할 재분배하기", "말하는 사람, 기록하는 사람, 발표하는 사람을 다시 정하고 시작합니다."],
+    ],
+  },
+  {
+    id: "student-shuts-down-after-correction",
+    title: "주의 후 학생이 닫히는 장면",
+    category: "갈등",
+    urgency: "중간",
+    focus: "감정 대결을 키우지 않고 다시 공동체 활동으로 들어올 통로를 만듭니다.",
+    situation:
+      "주의를 받은 학생이 말없이 고개를 돌리고 아무 활동도 하지 않습니다. 교사가 더 밀어붙이면 버티기처럼 보이고, 그냥 두면 활동에서 빠진 상태가 굳어집니다.",
+    tags: ["위축", "참여 회복", "재진입"],
+    recommended: ["observer", "boundary", "system"],
+    actions: [
+      ["observer", "참여가 멈춘 상태 말하기", "주의 뒤 활동 참여가 멈춘 상태를 조용히 확인합니다."],
+      ["boundary", "활동 이탈의 선 세우기", "감정은 있을 수 있지만 수업 활동에서 완전히 빠지는 방식은 조정해야 한다고 말합니다."],
+      ["system", "작은 역할로 다시 들어오게 하기", "전체 활동 대신 짧은 표시, 한 문장 쓰기, 모둠 안 작은 역할부터 시작하게 합니다."],
+    ],
+  },
 ];
 
 const sentences = [
@@ -426,6 +633,7 @@ const state = {
   studyIndex: 0,
   studyFlipped: false,
   quizIndex: 0,
+  quizOrder: [],
   selectedRole: null,
   selectedResponse: null,
   sentenceRole: "observer",
@@ -451,6 +659,10 @@ function switchView(view) {
   document.querySelectorAll(".view").forEach((viewEl) => {
     viewEl.classList.toggle("is-visible", viewEl.id === `${view}-view`);
   });
+  if (view === "quiz" && state.quizOrder.length === 0) {
+    resetQuizOrder();
+    renderQuiz();
+  }
 }
 
 function studyDecks() {
@@ -507,7 +719,8 @@ function moveStudy(delta) {
 }
 
 function currentScenario() {
-  return scenarios[state.quizIndex];
+  if (state.quizOrder.length === 0) resetQuizOrder();
+  return scenarios[state.quizOrder[state.quizIndex]];
 }
 
 function recommendedRole(scenario) {
@@ -519,7 +732,7 @@ function renderQuiz() {
   state.selectedRole = null;
   state.selectedResponse = null;
   $("#quiz-meta").innerHTML = `
-    <span>${state.quizIndex + 1}/${scenarios.length}</span>
+    <span>랜덤 ${state.quizIndex + 1}/${scenarios.length}</span>
     <span>${scenario.category}</span>
     <span>긴급도 ${scenario.urgency}</span>
   `;
@@ -551,6 +764,20 @@ function renderQuiz() {
   $("#action-card").innerHTML = "";
   $("#sentence-card").innerHTML = "";
   bindRoleChoices();
+}
+
+function resetQuizOrder() {
+  state.quizOrder = shuffleIndexes(scenarios.length);
+  state.quizIndex = 0;
+}
+
+function shuffleIndexes(length) {
+  const indexes = Array.from({ length }, (_, index) => index);
+  for (let index = indexes.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [indexes[index], indexes[swapIndex]] = [indexes[swapIndex], indexes[index]];
+  }
+  return indexes;
 }
 
 function bindRoleChoices() {
@@ -691,7 +918,12 @@ function sentenceForScenario(roleId, scenario) {
 }
 
 function moveQuiz(delta) {
-  state.quizIndex = (state.quizIndex + delta + scenarios.length) % scenarios.length;
+  if (state.quizOrder.length === 0) resetQuizOrder();
+  if (delta > 0 && state.quizIndex === scenarios.length - 1) {
+    resetQuizOrder();
+  } else {
+    state.quizIndex = (state.quizIndex + delta + scenarios.length) % scenarios.length;
+  }
   renderQuiz();
 }
 
@@ -820,6 +1052,7 @@ function bindEvents() {
 
 function init() {
   bindEvents();
+  resetQuizOrder();
   renderStudyDeckFilter();
   renderStudyCard();
   renderQuiz();

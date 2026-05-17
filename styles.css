@@ -131,6 +131,12 @@ h3 {
   margin-bottom: 14px;
 }
 
+.section-help {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .flashcard,
 .quiz-card,
 .choice-panel,
